@@ -1,24 +1,34 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
-import Header from './components/Header';
-import Content from './components/Content';
+import React from "react";
+import "./styles.css";
+import Assignments from "./pages/Assignments";
+import { Route, Switch } from "react-router-dom";
+import Drawer from "./components/Drawer";
+import { makeStyles } from "@material-ui/core/styles";
+
+//Pages
+import Home from "./pages/Home";
+import Course from "./pages/Course";
+import Program from "./pages/Program";
+
+
+const useStyles = makeStyles({
+  container: {
+    display: "flex"
+  }
+});
 
 export default function App() {
-
+  const classes = useStyles();
   return (
-    <div className="App">
-      <Grid container direction="column">
-        <Grid item>
-          <Header />
-        </Grid>
-        <Grid item container>
-          <Grid xs={false} sm={2} />
-          <Grid item xs={12} sm={8}>
-            <Content />
-          </Grid>
-          <Grid xs={false} sm={2} />
-        </Grid>
-      </Grid>
+    <div className={classes.container}>
+      <Drawer />
+      <Switch>
+        <Route exact from="/" render={props => <Home {...props} />} />
+        <Route exact path="/course" render={props => <Course {...props} />} />
+        <Route exact path="/program" render={props => <Program {...props} />} />
+        <Route exact path="/Assignments" render={props => <Assignments {...props} />} />
+        <Route exact path="/program" render={props => <Program {...props} />} />
+      </Switch>
     </div>
   );
 }
