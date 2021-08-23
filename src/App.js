@@ -1,46 +1,29 @@
-import React from "react";
-import "./styles.css";
-import Assignments from "./pages/Assignments";
-import { Route, Switch } from "react-router-dom";
-import Drawer from "./components/Drawer";
-import { makeStyles } from "@material-ui/core/styles";
+import './App.css'; 
+import Home from './pages/Home'; 
+import Contact from './pages/Contact'; 
+import About from './pages/About'; 
+import PersistentDrawerLeft from './components/PersistentDrawerLeft';
+import { BrowserRouter, Route, Switch }  
+    from 'react-router-dom'; 
 
-//Pages
-import Home from "./pages/Home";
-import Course from "./pages/Course";
-import Program from "./pages/Program";
-import PersistentDrawerLeft from "./components/PersistentDrawerLeft";
+function App() { 
 
-const useStyles = makeStyles({
-  container: {
-    display: "flex"
-  }
-});
+  return ( 
+    <div className="App"> 
+     <h1 style={{color: '#323576'}}>Material-UI Drawer</h1> 
+     <BrowserRouter> 
+     <PersistentDrawerLeft/> 
+      <Switch> 
+        <Route exact path='/' render= 
+            {props => <Home {...props} /> }/> 
+        <Route exact path='/about' render= 
+            {props => <About {...props} /> }/> 
+        <Route exact path='/contact' render= 
+            {props => <Contact {...props} /> }/> 
+      </Switch> 
+    </BrowserRouter> 
+    </div> 
+  ); 
+} 
 
-export default function App() {
-  const classes = useStyles();
-  return (
-    <div className={classes.container}>
-      <PersistentDrawerLeft />
-      <Switch>
-        <Route exact from="/" render={(props) => <Home {...props} />} />
-        <Route exact path="/course" render={(props) => <Course {...props} />} />
-        <Route
-          exact
-          path="/program"
-          render={(props) => <Program {...props} />}
-        />
-        <Route
-          exact
-          path="/Assignments"
-          render={(props) => <Assignments {...props} />}
-        />
-        <Route
-          exact
-          path="/program"
-          render={(props) => <Program {...props} />}
-        />
-      </Switch>
-    </div>
-  );
-}
+export default App; 
