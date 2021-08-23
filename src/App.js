@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Home from "./pages/Home";
 import Course from "./pages/Course";
 import Program from "./pages/Program";
-
+import PersistentDrawerLeft from "./components/PersistentDrawerLeft";
 
 const useStyles = makeStyles({
   container: {
@@ -21,13 +21,25 @@ export default function App() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <Drawer />
+      <PersistentDrawerLeft />
       <Switch>
-        <Route exact from="/" render={props => <Home {...props} />} />
-        <Route exact path="/course" render={props => <Course {...props} />} />
-        <Route exact path="/program" render={props => <Program {...props} />} />
-        <Route exact path="/Assignments" render={props => <Assignments {...props} />} />
-        <Route exact path="/program" render={props => <Program {...props} />} />
+        <Route exact from="/" render={(props) => <Home {...props} />} />
+        <Route exact path="/course" render={(props) => <Course {...props} />} />
+        <Route
+          exact
+          path="/program"
+          render={(props) => <Program {...props} />}
+        />
+        <Route
+          exact
+          path="/Assignments"
+          render={(props) => <Assignments {...props} />}
+        />
+        <Route
+          exact
+          path="/program"
+          render={(props) => <Program {...props} />}
+        />
       </Switch>
     </div>
   );
